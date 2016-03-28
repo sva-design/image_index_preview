@@ -32,7 +32,7 @@ jQuery(document).ready(function($) {
 
 			// add preview
 			$('<img />', {
-				src: root + '/image/1/' + size + '/' + external + '/' + file
+				src: root + '/image/1/' + size + '/' + external + '/' + file,
 			}).prependTo(link);
 		}
 	}
@@ -64,8 +64,13 @@ jQuery(document).ready(function($) {
 		}
 
 		if (path && file.match(/\.(?:bmp|gif|jpe?g|png)$/i)) {
-			// remove file name
-			link.text('');
+			if (page == 'index') {
+				// remove file name
+				link.text('');
+			} else {
+				// keep file name
+				link.attr('class', 'imageLink')
+			}
 			// add image
 			getDimensions(full_filepath, link, file, external);
 		}
